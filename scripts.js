@@ -7,19 +7,19 @@ const portfolioData = {
             title: "Full Stack Developer",
             company: "Référence Système",
             period: "April 2023 - Present",
-            description: "Led a team of 5 to develop a web application for managing large-scale client files. Optimized API performance and implemented CI/CD pipelines using GitLab Actions. Key tools included C#, Angular, ASP.NET, SQL Server, and Docker."
-        },
-        {
-            title: "Full Stack Developer",
-            company: "ID-M",
-            period: "September 2021 - December 2022",
-            description: "Designed privacy-focused systems and developed multi-factor authentication solutions. Built web and mobile applications using Django, FastAPI, Angular, and Cordova to support product demonstrations and client outreach."
+            description: "Developed a high-volume web application managing hundreds of thousands of customer files and thousands of invoices monthly. Optimized authorization with Redis caching, redesigned financial workflows, modernized document generation, and strengthened CI/CD and audit logging using C#, Angular, ASP.NET Core, SQL Server, Docker, Hangfire, and Sentry."
         },
         {
             title: "Full Stack Developer",
             company: "CIUSSSCN",
             period: "September 2019 - August 2023",
-            description: "Developed healthcare applications including 'Concerto' for chronic disease management. Enhanced UX with physicians' input and contributed to research published in journals like BMJ. Utilized Django, FastAPI, Angular, and Kubernetes."
+            description: "Developed Concerto, a healthcare platform for chronic disease management supporting clinicians and patients. Improved clinical workflows through collaboration with physicians and user testing with patients, while building CI/CD pipelines on cloud infrastructure using Django, Angular, Kubernetes, and OpenShift."
+        },
+        {
+            title: "Full Stack Developer",
+            company: "ID-M",
+            period: "September 2021 - December 2022",
+            description: "Designed privacy-focused identity and authentication systems, including a zero-knowledge proof identity platform and a customizable multi-factor authentication service supporting 10+ methods. Built web, mobile, and Google Workspace applications using Django, FastAPI, Angular, Cordova, and Google Apps Script."
         }
     ],
     skills: [
@@ -40,14 +40,9 @@ const portfolioData = {
     ],
     projects: [
         {
-            title: "Health Me",
-            description: "Developed a web application enabling users to manage and track their personal health information. The application aims to provide an intuitive interface to log and review medical or fitness data, simplifying everyday health management.",
-            link: "https://health-me.demo.jorganise.app/"
-        },
-        {
-            title: "Review Me",
-            description: "Created a data labeling platform allowing users to classify and annotate datasets efficiently. This solution is particularly useful for projects requiring data preparation for machine learning.",
-            link: "https://reviewme.demo.jorganise.app/"
+            title: "Cloudacy",
+            description: "Developed a web client to store encrypted files transparently on cloud services like Dropbox or Google Drive. Built with Angular, the application ensures data privacy and offers a user-friendly interface for seamless file management.",
+            link: "https://cloudacy.jorganise.app"
         },
         {
             title: "Rest In Pi",
@@ -57,20 +52,36 @@ const portfolioData = {
     ],
     otherProjects: [
         {
-            "title": "Jolof Shop",
-            "description": "Designed an online store tailored for users in Senegal to purchase prepaid cards using mobile wallets such as Orange Money or Wave. The platform offers a seamless user experience, enabling quick and secure transactions.",
-            "link": null
+            title: "À Parts Égales",
+            description: "Built an expense-splitting application where users enter who paid what, and the app calculates who should reimburse whom to balance shared expenses.",
+            link: "https://apartsegales.jorganise.app/"
         },
         {
-            "title": "Cote Covid",
-            "description": "Created a web application for grade optimization, intended for students at Université Laval.",
-            "link": "https://www.unatelier.app/"
+            title: "Roadmap",
+            description: "Developed a note-taking tool for training and learning paths, allowing users to import roadmaps from roadmap.sh and organize their progress.",
+            link: "https://roadmap.demo.jorganise.app/"
         },
         {
-            "title": "Cloudacy",
-            "description": "Developed a web client to store encrypted files transparently on cloud services like Dropbox or Google Drive. Built with Angular, the application ensures data privacy and offers a user-friendly interface for seamless file management.",
-            "link": null
-        }
+            title: "Cote Covid",
+            description: "Created a web application for grade optimization, intended for students at Université Laval.",
+            link: "https://www.unatelier.app/"
+        },
+        {
+            title: "Health Me",
+            description: "Developed a web application enabling users to manage and track their personal health information. The application aims to provide an intuitive interface to log and review medical or fitness data, simplifying everyday health management.",
+            link: null
+        },
+        {
+            title: "Review Me",
+            description: "Created a data labeling platform allowing users to classify and annotate datasets efficiently. This solution is particularly useful for projects requiring data preparation for machine learning.",
+            link: null
+        },
+        {
+            title: "Jolof Shop",
+            description: "Designed an online store tailored for users in Senegal to purchase prepaid cards using mobile wallets such as Orange Money or Wave. The platform offers a seamless user experience, enabling quick and secure transactions.",
+            link: null
+        },
+
     ],
     contact: {
         email: "jacktchuente@gmail.com",
