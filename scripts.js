@@ -1,3 +1,5 @@
+const web3formsApiKey = "f4b40c5d-1b5a-4af3-a466-dec0603bb8b6";
+
 const portfolioData = {
     name: "Jack Tchuente",
     title: "Full Stack Developer",
@@ -13,7 +15,7 @@ const portfolioData = {
             title: "Full Stack Developer",
             company: "CIUSSSCN",
             period: "September 2019 - August 2023",
-            description: "Developed Concerto, a healthcare platform for chronic disease management supporting clinicians and patients. Improved clinical workflows through collaboration with physicians and user testing with patients, while building CI/CD pipelines on cloud infrastructure using Django, Angular, Kubernetes, and OpenShift."
+            description: "Developed Concerto, a healthcare platform for chronic disease management supporting clinicians and patients. Improved clinical workflows through collaboration with physicians and user testing with patients, while building CI/CD pipelines on cloud infrastructure using Django, Angular, and OpenShift."
         },
         {
             title: "Full Stack Developer",
@@ -44,11 +46,17 @@ const portfolioData = {
             description: "Developed a web client to store encrypted files transparently on cloud services like Dropbox or Google Drive. Built with Angular, the application ensures data privacy and offers a user-friendly interface for seamless file management.",
             link: "https://cloudacy.jorganise.app"
         },
+
         {
             title: "Rest In Pi",
             description: "Developed an online tool allowing users to search for specific sequences in the decimal expansion of π. Users can input a sequence of digits and determine if it appears within the first decimals of π.",
             link: "https://restinpi.com/"
-        }
+        },
+        {
+            title: "Review Me",
+            description: "Created a data labeling platform allowing users to classify and annotate datasets efficiently. This solution is particularly useful for projects requiring data preparation for machine learning.",
+            link: null
+        },
     ],
     otherProjects: [
         {
@@ -66,84 +74,171 @@ const portfolioData = {
             description: "Created a web application for grade optimization, intended for students at Université Laval.",
             link: "https://www.unatelier.app/"
         },
-        {
-            title: "Health Me",
-            description: "Developed a web application enabling users to manage and track their personal health information. The application aims to provide an intuitive interface to log and review medical or fitness data, simplifying everyday health management.",
-            link: null
-        },
-        {
-            title: "Review Me",
-            description: "Created a data labeling platform allowing users to classify and annotate datasets efficiently. This solution is particularly useful for projects requiring data preparation for machine learning.",
-            link: null
-        },
+
+
         {
             title: "Jolof Shop",
             description: "Designed an online store tailored for users in Senegal to purchase prepaid cards using mobile wallets such as Orange Money or Wave. The platform offers a seamless user experience, enabling quick and secure transactions.",
             link: null
         },
-
+        {
+            title: "Health Me",
+            description: "Developed a web application enabling users to manage and track their personal health information. The application aims to provide an intuitive interface to log and review medical or fitness data, simplifying everyday health management.",
+            link: null
+        },
     ],
     contact: {
-        email: "jacktchuente@gmail.com",
-        github: "https://github.com/etneuhct",
+        github: "https://github.com/jacktchuente",
         linkedin: "https://www.linkedin.com/in/jack-tchuente/"
     },
 
 };
 
+function renderContactForm() {
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("contact-status");
+
+    if (!form || !status) return;
+
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const submitButton = form.querySelector("button[type='submit']");
+        const originalButtonContent = submitButton.innerHTML;
+
+        status.textContent = "";
+        status.className = "contact-status";
+
+        if (typeof web3formsApiKey === "undefined" || !web3formsApiKey) {
+            status.textContent = "Contact form is not configured yet. Please use the email link above.";
+            status.classList.add("error");
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        if (formData.get("botcheck")) {
+            return;
+        }
+
+        const payload = {
+            access_key: web3formsApiKey,
+            name: formData.get("name"),
+            email: formData.get("email"),
+            subject: formData.get("subject"),
+            message: formData.get("message"),
+            from_name: "Portfolio"
+        };
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Sending...";
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || "Unable to send message.");
+            }
+
+            form.reset();
+            status.textContent = "Thanks! Your message has been sent successfully.";
+            status.classList.add("success");
+        } catch (error) {
+            status.textContent = "Something went wrong. Please try again or contact me by email.";
+            status.classList.add("error");
+        } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonContent;
+        }
+    });
+}
 
 function renderPortfolio() {
-    document.getElementById("intro").innerHTML = `
-        <h1>${portfolioData.name}</h1>
-        <h2 style="margin-top: 25px; text-align: center">${portfolioData.title}</h2>
-        <p>${portfolioData.about}</p>
-        <div class="social-links">
-            <a href="mailto:${portfolioData.contact.email}" aria-label="Email">📧</a>
-            <a href="${portfolioData.contact.github}" target="_blank" aria-label="GitHub">🐙</a>
-            <a href="${portfolioData.contact.linkedin}" target="_blank" aria-label="LinkedIn">🔗</a>
+    const intro = document.getElementById("intro");
+    const experienceSection = document.querySelector(".experience-list");
+    const skillsSection = document.querySelector(".skills-grid");
+    const projectsSection = document.querySelector(".projects-grid");
+    const otherProjectsSection = document.querySelector(".other-projects-grid");
+    const footer = document.querySelector("footer");
+
+    intro.innerHTML = `
+        <div class="hero-content">
+            <h1>${portfolioData.name}</h1>
+            <div class="hero-title">${portfolioData.title}</div>
+            <p class="hero-about">${portfolioData.about}</p>
+
+            <div class="social-links">
+                <a href="#contact" aria-label="Contact">
+                    <span>📧</span>
+                    <span>Contact</span>
+                </a>
+                <a href="${portfolioData.contact.github}" target="_blank" rel="noreferrer" aria-label="GitHub">
+                    <span>🐙</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="${portfolioData.contact.linkedin}" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                    <span>🔗</span>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
         </div>
     `;
 
-    const experienceSection = document.getElementById("experience");
-    portfolioData.experience.forEach(job => {
-        experienceSection.innerHTML += `
-            <div class="card">
-                <h3>${job.title}</h3>
-                <p><strong>${job.company}</strong> | ${job.period}</p>
-                <p>${job.description}</p>
+    experienceSection.innerHTML = portfolioData.experience.map(job => `
+        <article class="card experience-card">
+            <h3>${job.title}</h3>
+            <div class="meta">
+                <span class="company">${job.company}</span>
+                <span class="period">${job.period}</span>
             </div>
-        `;
-    });
+            <p>${job.description}</p>
+        </article>
+    `).join("");
 
-    const skillsSection = document.querySelector(".skills-grid");
-    portfolioData.skills.forEach(skill => {
-        skillsSection.innerHTML += `<span>${skill}</span>`;
-    });
+    skillsSection.innerHTML = portfolioData.skills
+        .map(skill => `<span>${skill}</span>`)
+        .join("");
 
-    const projectsSection = document.querySelector(".projects-grid");
-    portfolioData.projects.forEach(project => {
-        projectsSection.innerHTML += `
-            <div class="card">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                ${project.link ? `<button onclick="window.open('${project.link}', '_blank')">View Project</button>` : ''}
-            </div>
-        `;
-    });
+    projectsSection.innerHTML = portfolioData.projects.map(project => `
+        <article class="card project-card">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            ${renderProjectLink(project)}
+        </article>
+    `).join("");
 
-    const otherProjectsSection = document.querySelector(".other-projects-grid");
-    portfolioData.otherProjects.forEach(project => {
-        otherProjectsSection.innerHTML += `
-            <div class="card">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                ${project.link ? `<button onclick="window.open('${project.link}', '_blank')">View Project</button>` : ''}
-            </div>
-        `;
-    });
-    document.querySelector("footer").innerHTML = `
+    otherProjectsSection.innerHTML = portfolioData.otherProjects.map(project => `
+        <article class="card project-card">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            ${renderProjectLink(project)}
+        </article>
+    `).join("");
+    renderContactForm();
+
+    footer.innerHTML = `
         <p>&copy; ${new Date().getFullYear()} ${portfolioData.name}. All rights reserved.</p>
     `;
 }
 
-window.onload = renderPortfolio;
+function renderProjectLink(project) {
+    if (!project.link) return "";
+
+    return `
+        <a class="btn" href="${project.link}" target="_blank" rel="noreferrer">
+            View Project
+            <span aria-hidden="true">→</span>
+        </a>
+    `;
+}
+
+window.addEventListener("DOMContentLoaded", renderPortfolio);
