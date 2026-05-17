@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Jack Tchuente</title>
+    <title>Jack Tchuente | Full Stack Developer</title>
+
+    <meta name="description"
+          content="Full Stack Developer based in Québec, Canada. Experience with C#/.NET, Angular, Django, FastAPI, SQL, Redis, Docker, Kubernetes and CI/CD.">
+
+    <meta property="og:title" content="Jack Tchuente | Full Stack Developer">
+    <meta property="og:description"
+          content="Full Stack Developer building reliable production web applications across backend, frontend, databases, CI/CD and cloud-native environments.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jacktchuente.github.io/portfolio/">
+
+    <link rel="canonical" href="https://jacktchuente.github.io/portfolio/">
     <link rel="icon" type="image/x-icon" href="logo.png">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,15 +25,16 @@
 <main class="container">
     <header id="intro"></header>
 
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid"></div>
+    </section>
+
     <section id="experience">
         <h2>Experience</h2>
         <div class="experience-list"></div>
     </section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-grid"></div>
-    </section>
 
     <section id="projects">
         <h2>Projects</h2>
@@ -33,49 +45,7 @@
         <h2>Other Projects</h2>
         <div class="other-projects-grid"></div>
     </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-card">
-            <div class="contact-copy">
-                <h3>Let’s build something useful.</h3>
-                <p>
-                    Have a project, opportunity, or idea to discuss?
-                    Send me a message and I’ll get back to you.
-                </p>
-            </div>
 
-            <form id="contact-form" class="contact-form">
-                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
-
-                <div class="form-row">
-                    <label for="name">Name</label>
-                    <input id="name" name="name" type="text" placeholder="Your name" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" placeholder="you@example.com" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="subject">Subject</label>
-                    <input id="subject" name="subject" type="text" placeholder="Project inquiry" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
-                </div>
-
-                <button class="btn contact-submit" type="submit">
-                    Send Message
-                    <span aria-hidden="true">→</span>
-                </button>
-
-                <p id="contact-status" class="contact-status" role="status"></p>
-            </form>
-        </div>
-    </section>
     <footer></footer>
 </main>
 

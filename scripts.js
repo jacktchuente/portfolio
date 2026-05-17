@@ -1,9 +1,7 @@
-const web3formsApiKey = "f4b40c5d-1b5a-4af3-a466-dec0603bb8b6";
-
 const portfolioData = {
     name: "Jack Tchuente",
     title: "Full Stack Developer",
-    about: "Experienced Full Stack Developer with expertise in building scalable web applications and systems. Proficient in modern frameworks and technologies such as Django, Angular, ASP.NET, and Kubernetes, with a strong focus on delivering efficient and user-friendly solutions.",
+    about: "I work across C#/.NET, Angular, Django, FastAPI, SQL, Redis, Docker and CI/CD to build reliable web applications. I have contributed to high-volume business platforms, healthcare software, and identity/authentication systems, with experience from backend architecture to frontend implementation and deployment workflows.",
     experience: [
         {
             title: "Full Stack Developer",
@@ -46,7 +44,6 @@ const portfolioData = {
             description: "Developed a web client to store encrypted files transparently on cloud services like Dropbox or Google Drive. Built with Angular, the application ensures data privacy and offers a user-friendly interface for seamless file management.",
             link: "https://cloudacy.jorganise.app"
         },
-
         {
             title: "Rest In Pi",
             description: "Developed an online tool allowing users to search for specific sequences in the decimal expansion of π. Users can input a sequence of digits and determine if it appears within the first decimals of π.",
@@ -56,7 +53,7 @@ const portfolioData = {
             title: "Review Me",
             description: "Created a data labeling platform allowing users to classify and annotate datasets efficiently. This solution is particularly useful for projects requiring data preparation for machine learning.",
             link: null
-        },
+        }
     ],
     otherProjects: [
         {
@@ -74,8 +71,6 @@ const portfolioData = {
             description: "Created a web application for grade optimization, intended for students at Université Laval.",
             link: "https://www.unatelier.app/"
         },
-
-
         {
             title: "Jolof Shop",
             description: "Designed an online store tailored for users in Senegal to purchase prepaid cards using mobile wallets such as Orange Money or Wave. The platform offers a seamless user experience, enabling quick and secure transactions.",
@@ -85,82 +80,15 @@ const portfolioData = {
             title: "Health Me",
             description: "Developed a web application enabling users to manage and track their personal health information. The application aims to provide an intuitive interface to log and review medical or fitness data, simplifying everyday health management.",
             link: null
-        },
+        }
     ],
     contact: {
+        email: "jacktchuente@gmail.com",
         github: "https://github.com/jacktchuente",
-        linkedin: "https://www.linkedin.com/in/jack-tchuente/"
-    },
-
+        linkedin: "https://www.linkedin.com/in/jack-tchuente/",
+        resume: "resume_en.pdf"
+    }
 };
-
-function renderContactForm() {
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("contact-status");
-
-    if (!form || !status) return;
-
-    form.addEventListener("submit", async event => {
-        event.preventDefault();
-
-        const submitButton = form.querySelector("button[type='submit']");
-        const originalButtonContent = submitButton.innerHTML;
-
-        status.textContent = "";
-        status.className = "contact-status";
-
-        if (typeof web3formsApiKey === "undefined" || !web3formsApiKey) {
-            status.textContent = "Contact form is not configured yet. Please use the email link above.";
-            status.classList.add("error");
-            return;
-        }
-
-        const formData = new FormData(form);
-
-        if (formData.get("botcheck")) {
-            return;
-        }
-
-        const payload = {
-            access_key: web3formsApiKey,
-            name: formData.get("name"),
-            email: formData.get("email"),
-            subject: formData.get("subject"),
-            message: formData.get("message"),
-            from_name: "Portfolio"
-        };
-
-        submitButton.disabled = true;
-        submitButton.innerHTML = "Sending...";
-
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-
-            if (!response.ok || !result.success) {
-                throw new Error(result.message || "Unable to send message.");
-            }
-
-            form.reset();
-            status.textContent = "Thanks! Your message has been sent successfully.";
-            status.classList.add("success");
-        } catch (error) {
-            status.textContent = "Something went wrong. Please try again or contact me by email.";
-            status.classList.add("error");
-        } finally {
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonContent;
-        }
-    });
-}
 
 function renderPortfolio() {
     const intro = document.getElementById("intro");
@@ -177,17 +105,24 @@ function renderPortfolio() {
             <p class="hero-about">${portfolioData.about}</p>
 
             <div class="social-links">
-                <a href="#contact" aria-label="Contact">
+                <a class="btn primary" href="${portfolioData.contact.resume}" target="_blank" rel="noreferrer" aria-label="Download Resume">
+                    <span>📄</span>
+                    <span>Download Resume</span>
+                </a>
+
+                <a class="btn" href="mailto:${portfolioData.contact.email}" aria-label="Email Jack Tchuente">
                     <span>📧</span>
-                    <span>Contact</span>
+                    <span>Email Me</span>
                 </a>
-                <a href="${portfolioData.contact.github}" target="_blank" rel="noreferrer" aria-label="GitHub">
-                    <span>🐙</span>
-                    <span>GitHub</span>
-                </a>
-                <a href="${portfolioData.contact.linkedin}" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+
+                <a class="btn" href="${portfolioData.contact.linkedin}" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                     <span>🔗</span>
                     <span>LinkedIn</span>
+                </a>
+
+                <a class="btn" href="${portfolioData.contact.github}" target="_blank" rel="noreferrer" aria-label="GitHub">
+                    <span>🐙</span>
+                    <span>GitHub</span>
                 </a>
             </div>
         </div>
@@ -223,7 +158,6 @@ function renderPortfolio() {
             ${renderProjectLink(project)}
         </article>
     `).join("");
-    renderContactForm();
 
     footer.innerHTML = `
         <p>&copy; ${new Date().getFullYear()} ${portfolioData.name}. All rights reserved.</p>
