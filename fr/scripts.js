@@ -54,14 +54,14 @@ window.portfolioData = {
     ],
     projects: [
         {
+            title: "Flowless",
+            description: "Développé une plateforme expérimentale de génération de chaînes pseudo-TV auto-gérées à partir d’une médiathèque. Elle combine l’analyse de métadonnées, la catégorisation assistée par IA, la création de lignes éditoriales et la synchronisation du playout avec des systèmes backend TV.",
+            link: "https://github.com/jacktchuente/flowless/"
+        },
+        {
             title: "Cloudacy",
             description: "Développement d’un client web permettant de stocker des fichiers chiffrés de manière transparente sur des services cloud comme Dropbox ou Google Drive. L’application, construite avec Angular, met l’accent sur la confidentialité des données et une expérience utilisateur fluide.",
             link: "https://cloudacy.jorganise.app"
-        },
-        {
-            title: "Jolof Shop",
-            description: "Conception d’une boutique en ligne destinée aux utilisateurs au Sénégal pour l’achat de cartes prépayées via des portefeuilles mobiles comme Orange Money ou Wave. La plateforme vise une expérience simple, rapide et sécurisée.",
-            link: null
         },
         {
             title: "Review Me",
@@ -71,13 +71,8 @@ window.portfolioData = {
     ],
     otherProjects: [
         {
-            title: "À Parts Égales",
-            description: "Développement d’une application de partage de dépenses où les utilisateurs indiquent qui a payé quoi, puis l’application calcule les remboursements nécessaires pour équilibrer les dépenses du groupe.",
-            link: "https://apartsegales.jorganise.app/"
-        },
-        {
             title: "Roadmap",
-            description: "Développement d’un outil de prise de notes et de suivi d’apprentissage permettant d’importer des roadmaps depuis roadmap.sh et d’organiser sa progression.",
+            description: "Conception d’un outil de prise de notes et de suivi d’apprentissage permettant d’importer des roadmaps depuis roadmap.sh et d’organiser sa progression.",
             link: "https://roadmap.demo.jorganise.app/"
         },
         {
@@ -91,9 +86,9 @@ window.portfolioData = {
             link: null
         },
         {
-            title: "Rest In Pi",
-            description: "Développement d’un outil en ligne permettant de rechercher des séquences spécifiques dans les décimales de π. L’utilisateur peut saisir une suite de chiffres et vérifier si elle apparaît dans les premières décimales de π.",
-            link: "https://restinpi.com/"
+            title: "À Parts Égales",
+            description: "Conception d’une application de partage de dépenses où les utilisateurs indiquent qui a payé quoi, puis l’application calcule les remboursements nécessaires pour équilibrer les dépenses du groupe.",
+            link: "https://apartsegales.jorganise.app/"
         },
 
     ],

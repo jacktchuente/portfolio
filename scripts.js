@@ -54,14 +54,14 @@ window.portfolioData = {
     ],
     projects: [
         {
+            title: "Flowless",
+            description: "Developed an experimental platform for generating self-managed pseudo-TV channels from a media library. It combines metadata analysis, AI-assisted categorization, editorial line creation and playout synchronization with TV backend systems.",
+            link: "https://github.com/jacktchuente/flowless/"
+        },
+        {
             title: "Cloudacy",
             description: "Developed a web client to store encrypted files transparently on cloud services like Dropbox or Google Drive. Built with Angular, the application ensures data privacy and offers a user-friendly interface for seamless file management.",
             link: "https://cloudacy.jorganise.app"
-        },
-        {
-            title: "Jolof Shop",
-            description: "Designed an online store tailored for users in Senegal to purchase prepaid cards using mobile wallets such as Orange Money or Wave. The platform offers a seamless user experience, enabling quick and secure transactions.",
-            link: null
         },
         {
             title: "Review Me",
@@ -70,11 +70,6 @@ window.portfolioData = {
         }
     ],
     otherProjects: [
-        {
-            title: "À Parts Égales",
-            description: "Built an expense-splitting application where users enter who paid what, and the app calculates who should reimburse whom to balance shared expenses.",
-            link: "https://apartsegales.jorganise.app/"
-        },
         {
             title: "Roadmap",
             description: "Developed a note-taking tool for training and learning paths, allowing users to import roadmaps from roadmap.sh and organize their progress.",
@@ -91,11 +86,10 @@ window.portfolioData = {
             link: null
         },
         {
-            title: "Rest In Pi",
-            description: "Developed an online tool allowing users to search for specific sequences in the decimal expansion of π. Users can input a sequence of digits and determine if it appears within the first decimals of π.",
-            link: "https://restinpi.com/"
+            title: "À Parts Égales",
+            description: "Built an expense-splitting application where users enter who paid what, and the app calculates who should reimburse whom to balance shared expenses.",
+            link: "https://apartsegales.jorganise.app/"
         },
-
     ],
     contact: {
         email: "jacktchuente@gmail.com",
